@@ -1,29 +1,29 @@
 // Group Jakob Linscheid, John Gulon
 
 public class TestInteger implements Comparable<TestInteger> {
-    
-    private int value;
-    private static long counter = 0;
-    
+    private final int value;
+    public static long comparisons = 0;
+
     public TestInteger(int value) {
         this.value = value;
-     }
-
-     public int compareTo(TestInteger other) {
-     counter++;
-     return Integer.compare(this.value, other.value);
     }
 
-    public static long getCounter() {
-        return counter;
-    }
-    
-    public static void resetCounter() {
-        counter = 0;
+    @Override
+    public int compareTo(TestInteger other) {
+        comparisons++;
+        return Integer.compare(this.value, other.value);
     }
 
-   
+    @Override
     public String toString() {
         return Integer.toString(value);
+    }
+
+    public static void resetComparisons() {
+        comparisons = 0;
+    }
+
+    public static long getComparisons() {
+        return comparisons;
     }
 }
